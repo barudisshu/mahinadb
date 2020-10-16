@@ -1,0 +1,30 @@
+version: '2'
+services:
+  seed:
+    container_name: mahinadb_seed_1
+    image: cplier/mahinadb:latest
+    ports:
+      - '1600:1600'
+      - '8402:8402'
+    environment:
+      CLUSTER_PORT: 1600
+      CLUSTER_IP: seed
+      SEED_PORT_1600_TCP_ADDR: seed
+  c1:
+    container_name: mahinadb_c1
+    image: cplier/mahinadb:latest
+    ports:
+      - '1601:1601'
+    environment:
+      CLUSTER_PORT: 1601
+      CLUSTER_IP: c1
+      SEED_PORT_1600_TCP_ADDR: seed
+  c2:
+    container_name: mahinadb_c2
+    image: cplier/mahinadb:latest
+    ports:
+      - '1602:1602'
+    environment:
+      CLUSTER_PORT: 1602
+      CLUSTER_IP: c2
+      SEED_PORT_1600_TCP_ADDR: seed
